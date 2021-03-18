@@ -42,5 +42,8 @@ public class Instantiation implements CommandLineRunner {
         Fine f2 = new Fine(null, sdf.parse("05/01/2021"),"Avenida Manoel RIbas", "irregular parking",new PilotDTO(d1));
 
         fineRepository.saveAll(Arrays.asList(f1, f2));
+
+        d1.getFines().addAll(Arrays.asList(f1, f2));
+        driverRepository.save(d1);
     }
 }

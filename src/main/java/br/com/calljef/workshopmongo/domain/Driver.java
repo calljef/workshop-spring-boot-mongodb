@@ -1,9 +1,12 @@
 package br.com.calljef.workshopmongo.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Document(collection = "driver")
@@ -14,6 +17,9 @@ public class Driver implements Serializable {
     private String id;
     private String name;
     private String cnh;
+
+    @DBRef(lazy = true)
+    private List<Fine> fines = new ArrayList<>();
 
     public Driver() {
     }
@@ -48,6 +54,14 @@ public class Driver implements Serializable {
         this.cnh = cnh;
     }
 
+    public List<Fine> getFines() {
+        return fines;
+    }
+
+    public void setDrivres(List<Fine> fines) {
+        this.fines = fines;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -60,4 +74,6 @@ public class Driver implements Serializable {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+
 }
