@@ -24,7 +24,7 @@ public class FineService {
     }
 
     public  List<Fine> findByText(String text) {
-        return repo.findByBodyContainingIgnoreCase(text);
+        return repo.searchByBody(text);
     }
 
 }
