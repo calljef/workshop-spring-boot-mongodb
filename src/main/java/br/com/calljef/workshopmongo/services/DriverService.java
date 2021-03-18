@@ -30,8 +30,12 @@ public class DriverService {
         return repo.insert(obj);
     }
 
+    public void deleteById(String id) {
+        findById(id);
+        repo.deleteById(id);
+    }
+
     public Driver fromDTO(DriverDTO objDTO) {
         return new Driver(objDTO.getId(), objDTO.getName(), objDTO.getCnh());
     }
-
 }
