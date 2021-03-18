@@ -1,5 +1,6 @@
 package br.com.calljef.workshopmongo.domain;
 
+import br.com.calljef.workshopmongo.dto.PilotDTO;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -16,17 +17,17 @@ public class Fine implements Serializable {
     private Date date;
     private String location;
     private String body;
-    private Driver driver;
+    private PilotDTO pilot;
 
     public Fine() {
     }
 
-    public Fine(String id, Date date, String location, String body, Driver driver) {
+    public Fine(String id, Date date, String location, String body, PilotDTO pilot) {
         this.id = id;
         this.date = date;
         this.location = location;
         this.body = body;
-        this.driver = driver;
+        this.pilot = pilot;
     }
 
     public String getId() {
@@ -61,12 +62,12 @@ public class Fine implements Serializable {
         this.body = body;
     }
 
-    public Driver getDriver() {
-        return driver;
+    public PilotDTO getpilot() {
+        return pilot;
     }
 
-    public void setDriver(Driver driver) {
-        this.driver = driver;
+    public void setpilot(PilotDTO pilot) {
+        this.pilot = pilot;
     }
 
     @Override
