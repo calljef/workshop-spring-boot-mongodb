@@ -6,6 +6,7 @@ import br.com.calljef.workshopmongo.services.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,6 +25,13 @@ public class DriverResource {
         List<Driver> l1 = service.findAll();
         List<DriverDTO> l1DTO = l1.stream().map(x -> new DriverDTO(x)).collect(Collectors.toList());
         return ResponseEntity.ok().body(l1DTO);
+
+    }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<DriverDTO> findById(@PathVariable String id) {
+        Driver d1 = service.findById(id);
+        return ResponseEntity.ok().body(new DriverDTO(d1));
 
     }
 }
