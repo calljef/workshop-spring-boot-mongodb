@@ -32,7 +32,7 @@ public class DriverResource {
         return ResponseEntity.ok().body(new DriverDTO(d1));
     }
 
-    @PutMapping()
+    @PostMapping()
     public ResponseEntity<Void> insert(@RequestBody DriverDTO objDTO) {
         Driver d1 = service.fromDTO(objDTO);
         d1 = service.insert(d1);
@@ -43,6 +43,14 @@ public class DriverResource {
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable String id) {
         service.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Void> update(@PathVariable String id, @RequestBody DriverDTO objDTO) {
+        Driver d1 = service.fromDTO(objDTO);
+        d1.setId(id);
+        d1 = service.update(d1);
         return ResponseEntity.noContent().build();
     }
 }

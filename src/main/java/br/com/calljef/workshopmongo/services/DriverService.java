@@ -35,6 +35,17 @@ public class DriverService {
         repo.deleteById(id);
     }
 
+    public Driver update(Driver obj) {
+        Driver newObj = repo.findById(obj.getId()).orElseThrow(() -> new ObjectNotFoundException("Object not found"));
+        updateData(newObj, obj);
+        return repo.save(newObj);
+    }
+
+    public void updateData(Driver newObj, Driver obj) {
+        newObj.setName(obj.getName());
+        newObj.setCnh(obj.getCnh());
+    }
+
     public Driver fromDTO(DriverDTO objDTO) {
         return new Driver(objDTO.getId(), objDTO.getName(), objDTO.getCnh());
     }
