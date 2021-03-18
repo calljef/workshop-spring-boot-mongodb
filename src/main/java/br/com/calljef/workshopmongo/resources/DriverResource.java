@@ -1,6 +1,7 @@
 package br.com.calljef.workshopmongo.resources;
 
 import br.com.calljef.workshopmongo.domain.Driver;
+import br.com.calljef.workshopmongo.domain.Fine;
 import br.com.calljef.workshopmongo.dto.DriverDTO;
 import br.com.calljef.workshopmongo.services.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,5 +53,11 @@ public class DriverResource {
         d1.setId(id);
         d1 = service.update(d1);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping(value = "/{id}/fines")
+    public ResponseEntity<List<Fine>> findFines(@PathVariable String id) {
+        Driver d1 = service.findById(id);
+        return ResponseEntity.ok().body(d1.getFines());
     }
 }
