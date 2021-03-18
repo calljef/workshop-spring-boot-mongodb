@@ -1,6 +1,7 @@
 package br.com.calljef.workshopmongo.services;
 
 import br.com.calljef.workshopmongo.domain.Driver;
+import br.com.calljef.workshopmongo.dto.DriverDTO;
 import br.com.calljef.workshopmongo.repositories.DriverRepository;
 import br.com.calljef.workshopmongo.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,4 +25,13 @@ public class DriverService {
         Optional<Driver> obj = repo.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException("Object not found"));
     }
+
+    public Driver insert(Driver obj) {
+        return repo.insert(obj);
+    }
+
+    public Driver fromDTO(DriverDTO objDTO) {
+        return new Driver(objDTO.getId(), objDTO.getName(), objDTO.getCnh());
+    }
+
 }
