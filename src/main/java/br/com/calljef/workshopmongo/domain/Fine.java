@@ -1,11 +1,14 @@
 package br.com.calljef.workshopmongo.domain;
 
 import br.com.calljef.workshopmongo.dto.PilotDTO;
+import br.com.calljef.workshopmongo.dto.VehicleDTO;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Document(collection = "fine")
@@ -19,6 +22,8 @@ public class Fine implements Serializable {
     private String body;
     private PilotDTO pilot;
 
+    private List<VehicleDTO>  vehicle = new ArrayList<>();
+
     public Fine() {
     }
 
@@ -31,10 +36,12 @@ public class Fine implements Serializable {
     }
 
     public String getId() {
+
         return id;
     }
 
     public void setId(String id) {
+
         this.id = id;
     }
 
@@ -43,31 +50,46 @@ public class Fine implements Serializable {
     }
 
     public void setDate(Date date) {
+
         this.date = date;
     }
 
     public String getLocation() {
+
         return location;
     }
 
     public void setLocation(String location) {
+
         this.location = location;
     }
 
     public String getBody() {
+
         return body;
     }
 
     public void setBody(String body) {
+
         this.body = body;
     }
 
     public PilotDTO getpilot() {
+
         return pilot;
     }
 
     public void setpilot(PilotDTO pilot) {
+
         this.pilot = pilot;
+    }
+
+    public List<VehicleDTO> getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(List<VehicleDTO> vehicle) {
+        this.vehicle = vehicle;
     }
 
     @Override
@@ -80,6 +102,7 @@ public class Fine implements Serializable {
 
     @Override
     public int hashCode() {
+
         return Objects.hash(id);
     }
 }
