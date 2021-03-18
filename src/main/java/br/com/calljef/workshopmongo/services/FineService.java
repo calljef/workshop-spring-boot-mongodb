@@ -23,4 +23,8 @@ public class FineService {
         return obj.orElseThrow(() -> new ObjectNotFoundException("Object not found"));
     }
 
+    public  List<Fine> findByText(String text) {
+        return repo.findByBodyContainingIgnoreCase(text);
+    }
+
 }
