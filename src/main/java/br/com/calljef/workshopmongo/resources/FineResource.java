@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URLDecoder;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -27,6 +27,18 @@ public class FineResource {
     public ResponseEntity<List<Fine>> findByText(@RequestParam(value = "text", defaultValue = "") String text) {
         text = URL.decodeParam(text);
         List<Fine> list = service.findByText(text);
+        return ResponseEntity.ok().body(list);
+    }
+
+    @GetMapping(value = "/fullsearch")
+    public ResponseEntity<List<Fine>> fullsearch(
+            @RequestParam(value = "text", defaultValue = "") String text,
+            @RequestParam(value = "minDate", defaultValue = "") String minDate,
+            @RequestParam(value = "minDate", defaultValue = "") String maxDate) {
+        text = URL.decodeParam(text);
+        Date min = URL.convertDate(minDate, new Date(0L));
+        Date max = URL.convertDate(maxDate, new Date());
+        List<Fine> list = service.fullSearch(text, min, max);
         return ResponseEntity.ok().body(list);
     }
 
